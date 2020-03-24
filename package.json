@@ -5,7 +5,7 @@
     "test": "web-ext run --source-dir ./"
   },
   "devDependencies": {
-    "minimist": "^1.2.3",
+    "minimist": "^1.2.2",
     "web-ext": "^4.1.0"
   }
 }
