@@ -9,6 +9,11 @@ Smart Tab Manager is a lightweight firefox extension that nests your tabs in a t
 ## Installation
 This extension must be loaded using [web-ext](https://github.com/mozilla/web-ext) or adding the package in [about:debugging](about:debugging) in firefox. 
 
+```
+npm install
+npm test
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
