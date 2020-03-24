@@ -1,5 +1,11 @@
 
-function printTabs(){
-    console.log("Hello World")
+function getTabs(){
+    browser.tabs.query({})
+    .then((tabs)=>{
+        for (let tab of tabs) {
+            // do something
+          }
+    })
+    
 }
-export {printTabs}
+export {getTabs}

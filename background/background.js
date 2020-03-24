@@ -1,3 +1,1 @@
-import { printTabs } from "/background/trackTabs.js"
-
-printTabs()
+import { getTabs } from "/background/trackTabs.js"
