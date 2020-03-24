@@ -1,0 +1,10 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "web-ext run --source-dir ./"
+  },
+  "devDependencies": {
+    "web-ext": "^4.1.0"
+  }
+}
