@@ -6,6 +6,13 @@
     "background": {
         "page": "/background/background.html"
     },
+
+    "sidebar_action": {
+        "default_title": "My sidebar!",
+        "default_panel": "/sidebar/sidebar.html",
+        "browser_style": true
+    },
+    
     "permissions": [
         "tabs"
       ]
