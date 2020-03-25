@@ -48,7 +48,7 @@ class TabGraph {
         if(!this.CheckTabIdExists(tabNode)){
             throw "No id for TabNode"
         }
-        this._topLevelTabs.append(tabid)
+        this._topLevelTabs.append(tabId)
         this.AddTabNode(tabNode)
     }
 
