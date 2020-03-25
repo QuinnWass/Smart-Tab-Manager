@@ -45,7 +45,7 @@ class TabGraph {
     */
     AddTopLevelTab(tabNode){
         let tabId = tabNode._id
-        if(!this.CheckTabIdExists(tabNode)){
+        if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
         this._topLevelTabs.append(tabId)
@@ -57,7 +57,7 @@ class TabGraph {
     Used to add any tab into the TabGraph. TabNodes must be constructed properly before insert
     */
     AddTabNode(tabNode){
-        if(!this.CheckTabIdExists(tabNode)){
+        if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
         let tabId = tabNode._.id
@@ -72,7 +72,7 @@ class TabGraph {
     Post: Tab deleted from this._tabs and ths._topLevelTabs
     */
     RemoveTabNode(tabNode){
-        if(!this.TabIdExists(tabNode)){
+        if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
         let didContainItem = this._tabs.delete(tabNode._id)
@@ -106,18 +106,16 @@ class TabGraph {
         }
 
     }
-    
-    /*
-    TabIdExists(tabNode)
-    Checks if tab id exists. If it does not the value will be Tabs.TAB_ID_NONE as documented 
-    on https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
-
-    */
-    TabIdExists(tabNode){
-        return tabNode._id != tabs.TAB_ID_NONE
-    }
 
 
+}
+/*
+TabIdExists(tabNode)
+Checks if tab id exists. If it does not the value will be Tabs.TAB_ID_NONE as documented 
+on https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
+*/
+function TabIdExists(tabNode){
+    return tabNode._id != tabs.TAB_ID_NONE
 }
 
 export {TabNode, TabGraph}
