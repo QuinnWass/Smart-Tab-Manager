@@ -1,5 +1,5 @@
 {
-  "name": "Smart Tab Manager",
+  "name": "SmartTabManager",
   "version": "0.0.1",
   "scripts": {
     "test": "web-ext run --source-dir ./"
