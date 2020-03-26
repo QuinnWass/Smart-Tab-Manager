@@ -1,4 +1,16 @@
 /*
+NEW_TAB_LISTNER_FILTERS
+Restricts when the NewTabListner is fired
+
+Documentation for NEW_TAB_LISTNER_FILTERS can be found at
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/onUpdated under extraParameters
+*/
+
+const NEW_TAB_LISTENER_FILTERS = {
+    properties: ["title", "status"]
+}
+
+/*
 function registerTabListner(callback)
 
 registerTabListner will register a listener to detect when changes are made to a tab.
@@ -13,14 +25,23 @@ Documentation for onUpdated listener can be found at
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/onUpdated
 
 */
-
-const TAB_LISTNER_FILTERS = {
-    properties: ["title", "status"]
+function registerNewTabListener(callback){
+    browser.tabs.onUpdated.addListener(callback, NEW_TAB_LISTENER_FILTERS)
 }
 
-function registerNewTabListner(callback){
-    browser.tabs.onUpdated.addListener(callback, TAB_LISTNER_FILTERS)
+/*
+function registerRemoveTabListner(callback)
+
+registerRemoveTabListner will register a listener to detect when a tab is removed.
+
+callback must have the parameters (tabId, removeInfo).
+
+Documentation for onRemoved listener can be found at
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onRemoved
+
+*/
+function registerRemoveTabListener(callback){
+    browser.tabs.onRemoved.addListener(callback)
 }
 
-
-export {registerNewTabListner};
+export {registerNewTabListener, registerRemoveTabListener};

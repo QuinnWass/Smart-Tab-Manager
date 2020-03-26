@@ -1,8 +1,3 @@
-import {registerNewTabListner} from './trackTabs.js' 
+import {registerNewTabListener, registerRemoveTabListener} from './trackTabs.js' 
 
-function dummyCallback(tabId, changeInfo, tab){
-    console.log(tabId)
-}
-
-registerNewTabListner(dummyCallback)
 
