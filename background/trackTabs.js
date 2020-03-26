@@ -14,11 +14,13 @@ https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/
 
 */
 
-const TAB_LISTNER_FILTERS = {}
+const TAB_LISTNER_FILTERS = {
+    properties: ["title", "status"]
+}
 
-function registerTabListner(callback){
+function registerNewTabListner(callback){
     browser.tabs.onUpdated.addListener(callback, TAB_LISTNER_FILTERS)
 }
 
 
-export {registerTabListner};
+export {registerNewTabListner};
