@@ -1,5 +1,4 @@
 function buildTabListInSidebar(tabList){
-    console.log("Try to build")
     var tabContainer = document.getElementsByClassName("tabList")[0];
     for (let tab of tabList) {
         var t = document.createElement("div")
