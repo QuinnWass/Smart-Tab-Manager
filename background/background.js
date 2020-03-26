@@ -1,3 +1,3 @@
-import {registerNewTabListener, registerRemoveTabListener} from './trackTabs.js' 
+import {registerNewTabListener, registerRemoveTabListener} from './listeners.js' 
 
 
