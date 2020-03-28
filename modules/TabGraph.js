@@ -62,6 +62,9 @@ class TabGraph {
         if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
+        if(this.HasTabNode(tabNode)){
+            return this.UpdateTabNode(tabNode)
+        }
         let tabId = tabNode.GetTabId()
         this._tabs.set(tabId,tabNode)
         if(!tabNode._parentId){
@@ -121,6 +124,10 @@ class TabGraph {
             this._tabs.set(parentTabId, parentTab)
         }
 
+    }
+
+    HasTabNode(tabNode){
+        return this._tabs.has(tabNode.GetTabId())
     }
 
 
