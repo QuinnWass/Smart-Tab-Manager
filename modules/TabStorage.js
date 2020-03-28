@@ -35,6 +35,7 @@ async function SetTab(tabNode){
         return RETURN_FLAGS.TAB_CREATE
     }catch(e){
         console.error(e)
+        return RETURN_FLAGS.RET_ERROR
     }
 };
 
