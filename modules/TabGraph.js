@@ -24,6 +24,9 @@ class TabNode {
         }
 
     }
+    GetTabId(){
+        return this._id
+    }
 }
 
 
@@ -44,12 +47,11 @@ class TabGraph {
     current tabs. TabNodes must be constructed properly before insert
     */
     AddTopLevelTab(tabNode){
-        let tabId = tabNode._id
+        let tabId = tabNode.GetTabId()
         if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
-        this._topLevelTabs.append(tabId)
-        this.AddTabNode(tabNode)
+        this._topLevelTabs.push(tabId)
     }
 
     /*
@@ -60,8 +62,22 @@ class TabGraph {
         if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
-        let tabId = tabNode._.id
+        let tabId = tabNode.GetTabId()
         this._tabs.set(tabId,tabNode)
+        if(!tabNode._parentId){
+            this.AddTopLevelTab(tabNode)
+        }
+    }
+
+    UpdateTabNode(tabNode){
+        if(!TabIdExists(tabNode)){
+            throw "No id for TabNode"
+        }
+        let tabId = tabNode.GetTabId()
+        if(!this._tabs.has(tabNode.GetTabId())){
+            throw "Tab does not exist in TabGraph"
+        }
+        this._tabs.set(tabNode.GetTabId(), tabNode)
     }
 
     /*
@@ -75,11 +91,11 @@ class TabGraph {
         if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
-        let didContainItem = this._tabs.delete(tabNode._id)
+        let didContainItem = this._tabs.delete(tabNode.GetTabId())
         if (!didContainItem){
             throw "TabNode does not exist"
         }
-        let index = this._topLevelTabs.indexOf(tabNode._id)
+        let index = this._topLevelTabs.indexOf(tabNode.GetTabId())
         if (index != -1){
             this._topLevelTabs.splice(index, REMOVE_ONE_ELEMENT)
         }
@@ -99,9 +115,9 @@ class TabGraph {
         if (parentTab ==  undefined){
             throw "Parent Tab does not exist"
         }
-        let index = parentTab._children.indexOf(childTabNode._id)
+        let index = parentTab._children.indexOf(childTabNode.GetTabId())
         if (index != -1){
-            parentTab._children.splice(childTabNode._id, REMOVE_ONE_ELEMENT)
+            parentTab._children.splice(childTabNode.GetTabId(), REMOVE_ONE_ELEMENT)
             this._tabs.set(parentTabId, parentTab)
         }
 
@@ -115,7 +131,7 @@ Checks if tab id exists. If it does not the value will be Tabs.TAB_ID_NONE as do
 on https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
 */
 function TabIdExists(tabNode){
-    return tabNode._id != tabs.TAB_ID_NONE
+    return tabNode.GetTabId() != browser.tabs.TAB_ID_NONE
 }
 
 export {TabNode, TabGraph}
