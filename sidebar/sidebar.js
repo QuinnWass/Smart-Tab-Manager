@@ -14,4 +14,3 @@ function onError(e){
 
 browser.tabs.query({})
     .then(buildTabListInSidebar, onError)
-
