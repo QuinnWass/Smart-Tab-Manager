@@ -7,7 +7,7 @@ https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/
 */
 
 const NEW_TAB_LISTENER_FILTERS = {
-    properties: ["title", "status"]
+    
 }
 
 /*
@@ -43,5 +43,6 @@ https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/
 function registerRemoveTabListener(callback){
     browser.tabs.onRemoved.addListener(callback)
 }
+
 
 export {registerNewTabListener, registerRemoveTabListener};

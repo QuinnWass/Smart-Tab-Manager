@@ -27,7 +27,7 @@ async function InitializeTabStorage(){
         page.TAB_GRAPH = new TabGraph()
         return RETURN_FLAGS.TAB_STORE_CREATE
     }catch(e){
-        console.log(e)
+        console.error(e)
         return RETURN_FLAGS.TAB_STORE_CREATE_FAIL
     }
 }
