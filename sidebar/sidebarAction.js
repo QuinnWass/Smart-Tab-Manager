@@ -26,7 +26,7 @@ async function CreateNewTab(tab){
     tab_container.className = "tab_container"
 
     close_tab_btn.innerHTML = "x"
-    close_tab_btn.className = "btn_item"
+    close_tab_btn.className = "btn_item browser-style"
 
     fav_icon.src = tab.favIconUrl
     fav_icon.className = "fav_icon_item"
