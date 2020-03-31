@@ -7,10 +7,14 @@ async function CreateNewTab(tab){
     let tab_container = document.createElement("div")
     let tab_title = document.createElement("a")
     let close_tab_btn = document.createElement("a")
+    let fav_icon = document.createElement("img")
+    let fav_icon_container = document.createElement("div")
     
     close_tab_btn.dataset.tabId = tab.id
     tab_title.dataset.tabId = tab.id
     tab_container.dataset.tabId = tab.id
+    fav_icon.dataset.tabId = tab.id
+    fav_icon_container.dataset.tabId = tab.id
 
     close_tab_btn.addEventListener("click", SidebarCallbacks.HandleRemoveClick)
     
@@ -24,6 +28,13 @@ async function CreateNewTab(tab){
     close_tab_btn.innerHTML = "x"
     close_tab_btn.className = "btn_item"
 
+    fav_icon.src = tab.favIconUrl
+    fav_icon.className = "fav_icon_item"
+
+    fav_icon_container.className = "fav_icon_container"
+
+    fav_icon_container.appendChild(fav_icon)
+    tab_container.appendChild(fav_icon)
     tab_container.appendChild(tab_title)
     tab_container.appendChild(close_tab_btn)
     
@@ -38,7 +49,8 @@ async function UpdateTab(tab){
     for(let i = 0; i < tab_container.children.length; i++){
         if(tab_container.children[i].className == "title_item"){
             tab_container.children[i].innerHTML = tab.title
-            return
+        }else if(tab_container.children[i].className == "fav_icon_item"){
+            tab_container.children[i].src = tab.favIconUrl
         }
     }
 

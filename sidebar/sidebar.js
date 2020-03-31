@@ -4,6 +4,7 @@ import * as SidebarAction from './sidebarAction.js'
 
 async function InitSideBar(){
     try{
+        
         let page = await browser.runtime.getBackgroundPage()
 
         page.page_document = document

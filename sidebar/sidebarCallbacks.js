@@ -10,7 +10,6 @@ async function RenderNewTab(tab){
         return SidebarAction.UpdateTab(tab)
     }
     return SidebarAction.CreateNewTab(tab)
-    
 }
 
 async function HandleRemoveClick(event){
@@ -22,8 +21,6 @@ async function HandleRemoveClick(event){
     }
     event.target.parentElement.remove()
     browser.tabs.remove(tabNode.GetTabId())
-
-
 }
 
 async function HandleFocusTabClick(event){
@@ -34,7 +31,6 @@ async function HandleFocusTabClick(event){
 async function GetTabFromEvent(event){
     let tabId = parseInt(event.target.dataset.tabId)
     return await browser.tabs.get(tabId)
-
 }
 
 export {HandleRemoveClick, HandleFocusTabClick, RenderNewTab}
