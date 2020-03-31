@@ -1,16 +1,6 @@
 import * as TabStorage from '/modules/TabStorage.js'
 import { TabNode } from '/modules/TabGraph.js'
-import * as SidebarAction from "./sidebarAction.js"
-    
 
-async function RenderNewTab(tab){
-    let page = await browser.runtime.getBackgroundPage()
-    let tab_container_map = page.tab_container_map
-    if(tab_container_map.has(tab.id)){
-        return SidebarAction.UpdateTab(tab)
-    }
-    return SidebarAction.CreateNewTab(tab)
-}
 
 async function HandleRemoveClick(event){
     let tab = await GetTabFromEvent(event)
@@ -24,8 +14,11 @@ async function HandleRemoveClick(event){
 }
 
 async function HandleFocusTabClick(event){
+    console.log("click")
     let tab = await GetTabFromEvent(event)
+    let window = await GetWindowFromEvent(event)
     browser.tabs.update(tab.id,{active:true})
+    browser.windows.update(window.windowId, {focused: true, drawAttention:true})
 }
 
 async function GetTabFromEvent(event){
@@ -33,4 +26,9 @@ async function GetTabFromEvent(event){
     return await browser.tabs.get(tabId)
 }
 
+
+async function GetWindowFromEvent(event){
+    let windowId = parseInt(event.target.dataset.windowId)
+    return await browser.windows.get(windowId)
+}
 export {HandleRemoveClick, HandleFocusTabClick, RenderNewTab}

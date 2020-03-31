@@ -1,20 +1,31 @@
+
+/*
+
+File should not be needed. Keeping incase this is not so until merge with main
 import * as SidebarCallbacks from "/sidebar/sidebarCallbacks.js"
 
 
 async function CreateNewTab(tab){
     let page = await browser.runtime.getBackgroundPage()
     let tab_list = page.tab_list
-    let tab_container = document.createElement("div")
-    let tab_title = document.createElement("a")
-    let close_tab_btn = document.createElement("a")
-    let fav_icon = document.createElement("img")
-    let fav_icon_container = document.createElement("div")
+    let tab_container = page.page_document.createElement("div")
+    let tab_title = page.page_document.createElement("a")
+    let close_tab_btn = page.page_document.createElement("a")
+    let fav_icon = page.page_document.createElement("img")
+    let fav_icon_container = page.page_document.createElement("div")
     
     close_tab_btn.dataset.tabId = tab.id
     tab_title.dataset.tabId = tab.id
     tab_container.dataset.tabId = tab.id
     fav_icon.dataset.tabId = tab.id
     fav_icon_container.dataset.tabId = tab.id
+
+    close_tab_btn.dataset.windowId = tab.windowId
+    tab_title.dataset.windowId = tab.windowId
+    tab_container.dataset.windowId = tab.windowId
+    fav_icon.dataset.windowId = tab.windowId
+    fav_icon_container.dataset.windowId = tab.windowId
+
 
     close_tab_btn.addEventListener("click", SidebarCallbacks.HandleRemoveClick)
     
@@ -57,3 +68,4 @@ async function UpdateTab(tab){
 }
 
 export {CreateNewTab, UpdateTab}
+*/

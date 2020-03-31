@@ -45,4 +45,21 @@ function registerRemoveTabListener(callback){
 }
 
 
-export {registerNewTabListener, registerRemoveTabListener};
+/*
+function registerConnectionListner(callback)
+
+registerConnectionListner will register a listener to detect when a connection is established
+to the background. 
+
+callback must have the parameter (Port).
+
+Documentation for onConnect listener can be found at
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connect
+
+*/
+function registerConnectionListner(callback){
+    browser.runtime.onConnect.addListener(callback);
+}
+
+
+export {registerNewTabListener, registerRemoveTabListener, registerConnectionListner};

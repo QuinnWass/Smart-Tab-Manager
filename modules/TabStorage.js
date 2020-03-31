@@ -7,7 +7,8 @@ const RETURN_FLAGS = {
     RET_ERROR: "TAB_STORE_RET_ERROR",
     TAB_REMOVE: "TAB_REMOVE",
     TAB_STORE_CREATE: "TAB_STORE_CREATE",
-    TAB_STORE_CREATE_FAIL: "TAB_STORE_CREATE_FAIL"
+    TAB_STORE_CREATE_FAIL: "TAB_STORE_CREATE_FAIL",
+    WINDOW_SET: "WINDOW_SET"
 }
 
 /*
@@ -25,6 +26,8 @@ async function InitializeTabStorage(){
         }
         page.TAB_GRAPH_INIT = true
         page.TAB_GRAPH = new TabGraph()
+        page.WINDOW_TRACKER = new Map()
+        page.CONNECTION_TRACKER = new Map()
         return RETURN_FLAGS.TAB_STORE_CREATE
     }catch(e){
         console.error(e)
@@ -67,6 +70,19 @@ async function RemoveTab(TabNode){
     }
     
 };
+
+async function SetWindow(Window){
+    try{
+        let page = await browser.runtime.getBackgroundPage()
+        let Window_tracker = page.WINDOW_TRACKER
+        Window_tracker.set(window.windowId, Window)
+        return RETURN_FLAGS.WINDOW_SET
+    }catch(e){
+        return RETURN_FLAGS.RET_ERROR
+    }
+}
+
+
 
 
 
