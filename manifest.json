@@ -8,7 +8,7 @@
     },
 
     "sidebar_action": {
-        "default_title": "My sidebar!",
+        "default_title": "Smart Tab Manager",
         "default_panel": "/sidebar/sidebar.html",
         "browser_style": true
     },
