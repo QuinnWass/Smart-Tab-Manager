@@ -10,7 +10,8 @@
     "sidebar_action": {
         "default_title": "Smart Tab Manager",
         "default_panel": "/sidebar/sidebar.html",
-        "browser_style": true
+        "browser_style": true,
+        "open_at_install":true
     },
     
     "permissions": [
