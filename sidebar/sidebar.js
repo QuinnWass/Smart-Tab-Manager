@@ -4,16 +4,43 @@ import * as Message from './../modules/Message.js'
 var tab_list = document.getElementsByClassName("tabList")[0];
 var tab_container_map = new Map()
 
+
+/*
+async function RenderNewTab(tab)
+RenderNewTab takes a tabs.Tab object as defined in 
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
+
+This function is used to render a new tab on the sidebar. Call this function when a message 
+from background indicates a new tab has been created.
+
+*/
 async function RenderNewTab(tab){
-    let page = await browser.runtime.getBackgroundPage()
-    if(tab_container_map.has(tab.id)){
-        return UpdateTab(tab)
+    try{
+        let page = await browser.runtime.getBackgroundPage()
+        if(tab_container_map.has(tab.id)){
+            return UpdateTab(tab)
+        }
+        return CreateNewTab(tab)
+    }catch(e){
+        console.error(e)
     }
-    return CreateNewTab(tab)
 }
 
+/*
+async function CreateNewTab(tab)
+CreateNewTab takes a tabs.Tab object as defined in 
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
+
+This function will create a tab on the DOM of the sidebar
+*/
 async function CreateNewTab(tab){
-    let page = await browser.runtime.getBackgroundPage()
+    try{
+        let page = await browser.runtime.getBackgroundPage()
+    }catch(e){
+        console.error(e)
+        return
+    }
+
     let tab_container = document.createElement("div")
     let tab_title = document.createElement("a")
     let close_tab_btn = document.createElement("a")
@@ -46,6 +73,9 @@ async function CreateNewTab(tab){
     close_tab_btn.className = "btn_item browser-style"
 
     fav_icon.src = tab.favIconUrl
+    if(!fav_icon.src){
+        fav_icon.src = "/static/favicon.ico"
+    }
     fav_icon.className = "fav_icon_item"
 
     fav_icon_container.className = "fav_icon_container"
@@ -60,21 +90,42 @@ async function CreateNewTab(tab){
 
 }
 
+
+/*
+async function UpdateTab(tab)
+UpdateTab takes a tabs.Tab object as defined in 
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
+
+This function will update a tab on the DOM of the sidebar
+*/
 async function UpdateTab(tab){
-    let page = await browser.runtime.getBackgroundPage()
+    try{
+        let page = await browser.runtime.getBackgroundPage()
+    }catch(e){
+        console.error(e)
+        return
+    }
     let tab_container = tab_container_map.get(tab.id)
     for(let i = 0; i < tab_container.children.length; i++){
         if(tab_container.children[i].className == "title_item"){
             tab_container.children[i].innerHTML = tab.title
         }else if(tab_container.children[i].className == "fav_icon_item"){
-            tab_container.children[i].src = tab.favIconUrl
+            if(!tab.favIconUrl){
+                tab_container.children[i].src = "/static/favicon.ico"
+            }else{
+                tab_container.children[i].src = tab.favIconUrl
+            }
+            
         }
     }
 
 }
 
 
-async function InitSideBar(){
+/*
+Set up new sidebar
+*/
+(async () => {
     try{    
         let currentWindow = await  browser.windows.getCurrent()
         let sidebarPort = browser.runtime.connect()
@@ -108,6 +159,5 @@ async function InitSideBar(){
     }catch(e){
         console.error(e)
     }
-}
+})()
 
-InitSideBar()
