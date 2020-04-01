@@ -130,7 +130,7 @@ Set up new sidebar
         let currentWindow = await  browser.windows.getCurrent()
         let sidebarPort = browser.runtime.connect()
         let message_to_background = JSON.stringify(
-            new Message.Message(Message.MESSAGE_TYPE.CONN_EST, null, currentWindow))
+            new Message.Message(Message.MESSAGE_TYPE.CONN_EST, null,null, currentWindow))
 
         sidebarPort.postMessage(message_to_background);
 
@@ -144,6 +144,11 @@ Set up new sidebar
                 let tab = message.tab
                 RenderNewTab(tab)
             }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.REMOVE_TAB){
+                
+                //This message is not given the tab. Just tabId since handler passes ID after its deleted we cannot get he tab obj
+
+                console.log("Remove tab")
+                console.log(message)
                 //Remove tab functionality
             }else{
                 console.error("Incorrect Message type")

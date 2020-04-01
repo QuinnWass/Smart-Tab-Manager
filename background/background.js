@@ -11,3 +11,4 @@ TabStorage.InitializeTabStorage()
 
 BackgroundListeners.registerConnectionListner(BackgroundCallbacks.HandleNewConnection)
 BackgroundListeners.registerNewTabListener(BackgroundCallbacks.HandleNewTab)
+BackgroundListeners.registerRemoveTabListener(BackgroundCallbacks.HandleRemoveTab)

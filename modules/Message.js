@@ -11,9 +11,12 @@ const MESSAGE_TYPE = {
 /*
 class Message
 Simple message class used to create a uniform way of passing messages between Sidebar and Background
+
+Message has tabId in addition to tab to support remove functionality. Handler passes tabID after tab
+is removed by browser so it cannot retrieve the tab object
 */
 class Message {
-    constructor(MESSAGE_TYPE, tab = null, window = null){
+    constructor(MESSAGE_TYPE, tab, tabId,  window ){
         this.MESSAGE_TYPE = MESSAGE_TYPE
         this.tab = tab
         this.window = window
