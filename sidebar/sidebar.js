@@ -74,7 +74,7 @@ async function CreateNewTab(tab){
 
     fav_icon.src = tab.favIconUrl
     if(!fav_icon.src){
-        fav_icon.src = "/static/favicon.ico"
+        fav_icon.src = "/static/loading_favicon"
     }
     fav_icon.className = "fav_icon_item"
 
@@ -111,7 +111,7 @@ async function UpdateTab(tab){
             tab_container.children[i].innerHTML = tab.title
         }else if(tab_container.children[i].className == "fav_icon_item"){
             if(!tab.favIconUrl){
-                tab_container.children[i].src = "/static/favicon.ico"
+                tab_container.children[i].src = "/static/loading_favicon.ico"
             }else{
                 tab_container.children[i].src = tab.favIconUrl
             }
