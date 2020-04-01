@@ -19,6 +19,7 @@ class Message {
     constructor(MESSAGE_TYPE, tab, tabId,  window ){
         this.MESSAGE_TYPE = MESSAGE_TYPE
         this.tab = tab
+        this.tabId = tabId
         this.window = window
     }
 

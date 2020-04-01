@@ -122,6 +122,10 @@ async function UpdateTab(tab){
 }
 
 
+async function RemoveTab(tabId){
+    console.log("Sidebar RemoveTab: Not implemented")
+}
+
 /*
 Set up new sidebar
 */
@@ -144,12 +148,10 @@ Set up new sidebar
                 let tab = message.tab
                 RenderNewTab(tab)
             }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.REMOVE_TAB){
-                
                 //This message is not given the tab. Just tabId since handler passes ID after its deleted we cannot get he tab obj
-
-                console.log("Remove tab")
-                console.log(message)
-                //Remove tab functionality
+                //Remove tab functionality IMPLEMENT ME
+                RemoveTab(message.tabId)
+                console.error("Sidebar: remove tab not implemented")
             }else{
                 console.error("Incorrect Message type")
             }

@@ -31,4 +31,6 @@ async function GetWindowFromEvent(event){
     let windowId = parseInt(event.target.dataset.windowId)
     return await browser.windows.get(windowId)
 }
+
+
 export {HandleRemoveClick, HandleFocusTabClick}
