@@ -1,4 +1,5 @@
 import * as SidebarCallbacks from "/sidebar/sidebarCallbacks.js"
+import * as Message from './../modules/Message.js'
 
 var tab_list = document.getElementsByClassName("tabList")[0];
 var tab_container_map = new Map()
@@ -77,13 +78,25 @@ async function InitSideBar(){
     try{    
         let currentWindow = await  browser.windows.getCurrent()
         let sidebarPort = browser.runtime.connect()
-        sidebarPort.postMessage({window:currentWindow});
+        let message_to_background = JSON.stringify(
+            new Message.Message(Message.MESSAGE_TYPE.CONN_EST, null, currentWindow))
+
+        sidebarPort.postMessage(message_to_background);
 
         sidebarPort.onMessage.addListener(function(m) {
+            let message = JSON.parse(m)
             console.log("Message from background")
-            console.log(m);
-            let tab = m.tab
-            RenderNewTab(tab)
+            console.log(message);
+            if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.CONN_EST){
+                console.log("Connection Established")
+            }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.SET_TAB){
+                let tab = message.tab
+                RenderNewTab(tab)
+            }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.REMOVE_TAB){
+                //Remove tab functionality
+            }else{
+                console.error("Incorrect Message type")
+            }
         })
 
         let page = await browser.runtime.getBackgroundPage()

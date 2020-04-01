@@ -1,7 +1,7 @@
 import * as TabStorage from '/modules/TabStorage.js'
 import { TabNode } from '/modules/TabGraph.js';
-import * as SidebarCallbacks from "/sidebar/sidebarCallbacks.js"
-
+import * as SidebarCallbacks from '/sidebar/sidebarCallbacks.js'
+import * as Message from './../modules/Message.js'
 var connectionMap = new Map()
 
 function HandleNewTab(tabId, changeInfo, tab){
@@ -10,10 +10,12 @@ function HandleNewTab(tabId, changeInfo, tab){
     let tabNode = new TabNode(tab)
     TabStorage.SetTab(tabNode)
     let windowId = tab.windowId
+    let window = browser.windows.get(windowId)
     let port = connectionMap.get(windowId)
     console.log("Message to port: ")
     console.log(port)
-    port.postMessage({id:windowId, tab:tab})
+    let message = JSON.stringify(new Message.Message(Message.MESSAGE_TYPE.SET_TAB, tab, window ))
+    port.postMessage(message)
 }
 
 
@@ -22,8 +24,10 @@ function HandleNewConnection(Port){
     let sidebarPort = Port
     //fixme use message class
     //fixme store ports in TabStorage
-    sidebarPort.postMessage({greeting: "Connection with background established"});
-    sidebarPort.onMessage.addListener((message)=>{
+    const msg = JSON.stringify(new Message.Message(Message.MESSAGE_TYPE.CONN_EST))
+    sidebarPort.postMessage(msg);
+    sidebarPort.onMessage.addListener((m)=>{
+      let message = JSON.parse(m)
       console.log("Sidebar message")
       console.log(message)
       let windowId = message.window.id
