@@ -4,7 +4,6 @@ import * as Message from './../modules/Message.js'
 var tab_list = document.getElementsByClassName("tabList")[0];
 var tab_container_map = new Map()
 
-
 /*
 async function RenderNewTab(tab)
 RenderNewTab takes a tabs.Tab object as defined in 
@@ -121,7 +120,6 @@ async function UpdateTab(tab){
 
 }
 
-
 async function RemoveTab(tabId){
     let tab_container = tab_container_map.get(tabId)
     tab_container.remove()
@@ -149,8 +147,6 @@ Set up new sidebar
                 let tab = message.tab
                 RenderNewTab(tab)
             }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.REMOVE_TAB){
-                //This message is not given the tab. Just tabId since handler passes ID after its deleted we cannot get he tab obj
-                //Remove tab functionality IMPLEMENT ME
                 RemoveTab(message.tabId)
             }else{
                 console.error("Incorrect Message type")
