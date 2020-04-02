@@ -30,8 +30,7 @@ function HandleNewConnection(Port){
 }
 
 async function HandleRemoveTab(tabId, removeInfo){
-  //let tabNode = new TabNode(tab)
-  //TabStorage.RemoveTab(tabNode)
+  TabStorage.RemoveTab(tabId)
   let windowId = removeInfo.windowId
   let window = await browser.windows.get(windowId)
   let port = connectionMap.get(windowId)
