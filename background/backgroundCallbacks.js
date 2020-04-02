@@ -2,6 +2,7 @@ import * as TabStorage from '/modules/TabStorage.js'
 import { TabNode } from '/modules/TabGraph.js';
 import * as SidebarCallbacks from '/sidebar/sidebarCallbacks.js'
 import * as Message from './../modules/Message.js'
+import * as BackgroundListeners from "./listeners.js"
 
 var connectionMap = new Map()
 
@@ -18,6 +19,7 @@ async function HandleNewTab(tabId, changeInfo, tab){
 
 
 function HandleNewConnection(Port){
+  console.log("New connection")
     let sidebarPort = Port
     //fixme store ports in TabStorage
     const msg = JSON.stringify(new Message.Message(Message.MESSAGE_TYPE.CONN_EST, null, null, null))
@@ -26,7 +28,9 @@ function HandleNewConnection(Port){
       let message = JSON.parse(m)
       let windowId = message.window.id
       connectionMap.set(windowId, sidebarPort)
+      BackgroundListeners.registerNewTabListener(HandleNewTab, {windowId:windowId})
     })
+    
 }
 
 async function HandleRemoveTab(tabId, removeInfo){

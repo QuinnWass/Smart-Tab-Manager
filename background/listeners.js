@@ -6,9 +6,7 @@ Documentation for NEW_TAB_LISTNER_FILTERS can be found at
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/onUpdated under extraParameters
 */
 
-const NEW_TAB_LISTENER_FILTERS = {
-    
-}
+
 
 /*
 function registerTabListner(callback)
@@ -25,8 +23,8 @@ Documentation for onUpdated listener can be found at
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/onUpdated
 
 */
-function registerNewTabListener(callback){
-    browser.tabs.onUpdated.addListener(callback, NEW_TAB_LISTENER_FILTERS)
+function registerNewTabListener(callback, parameters){
+    browser.tabs.onUpdated.addListener(callback, parameters)
 }
 
 /*

@@ -8,5 +8,4 @@ import {test} from './../ModuleTests/TabStorageTests.js'
 
 TabStorage.InitializeTabStorage()
 BackgroundListeners.registerConnectionListner(BackgroundCallbacks.HandleNewConnection)
-BackgroundListeners.registerNewTabListener(BackgroundCallbacks.HandleNewTab)
 BackgroundListeners.registerRemoveTabListener(BackgroundCallbacks.HandleRemoveTab)
