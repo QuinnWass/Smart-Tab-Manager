@@ -84,21 +84,22 @@ class TabGraph {
     }
 
     /*
-    RemoveTabNode(tabNode)
+    RemoveTabNode(tabId)
     Removes tabNode from internal data structure. Removes from parent tab child list if it exists. 
     Removes from topLevelTab list if exists. Will throw exception of tabNode does not exist.
     Pre: Tab exists
     Post: Tab deleted from this._tabs and ths._topLevelTabs
     */
-    RemoveTabNode(tabNode){
+    RemoveTabNode(tabId){
+        let tabNode = this._tabs.get(tabId)
         if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
-        let didContainItem = this._tabs.delete(tabNode.GetTabId())
+        let didContainItem = this._tabs.delete(tabId)
         if (!didContainItem){
             throw "TabNode does not exist"
         }
-        let index = this._topLevelTabs.indexOf(tabNode.GetTabId())
+        let index = this._topLevelTabs.indexOf(tabId)
         if (index != -1){
             this._topLevelTabs.splice(index, REMOVE_ONE_ELEMENT)
         }
