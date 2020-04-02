@@ -19,7 +19,6 @@ async function HandleNewTab(tabId, changeInfo, tab){
 
 
 function HandleNewConnection(Port){
-  console.log("New connection")
     let sidebarPort = Port
     //fixme store ports in TabStorage
     const msg = JSON.stringify(new Message.Message(Message.MESSAGE_TYPE.CONN_EST, null, null, null))
