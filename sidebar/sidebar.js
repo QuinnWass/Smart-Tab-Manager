@@ -139,8 +139,6 @@ Set up new sidebar
 
         sidebarPort.onMessage.addListener(function(m) {
             let message = JSON.parse(m)
-            console.log("Message from background")
-            console.log(message);
             if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.CONN_EST){
                 console.log("Connection Established")
             }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.SET_TAB){

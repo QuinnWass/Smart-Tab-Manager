@@ -14,7 +14,6 @@ async function HandleRemoveClick(event){
 }
 
 async function HandleFocusTabClick(event){
-    console.log("click")
     let tab = await GetTabFromEvent(event)
     let window = await GetWindowFromEvent(event)
     browser.tabs.update(tab.id,{active:true})
