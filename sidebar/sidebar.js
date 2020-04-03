@@ -140,7 +140,7 @@ Set up new sidebar
         sidebarPort.onMessage.addListener(function(m) {
             let message = JSON.parse(m)
             if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.CONN_EST){
-                console.log("Connection Established")
+                
             }else if(message.MESSAGE_TYPE == Message.MESSAGE_TYPE.SET_TAB){
                 let tab = message.tab
                 RenderNewTab(tab)

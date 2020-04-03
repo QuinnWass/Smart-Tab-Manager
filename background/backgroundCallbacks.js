@@ -35,7 +35,13 @@ function HandleNewConnection(Port){
 async function HandleRemoveTab(tabId, removeInfo){
   TabStorage.RemoveTab(tabId)
   let windowId = removeInfo.windowId
-  let window = await browser.windows.get(windowId)
+  let window = undefined
+  try{
+    window = await browser.windows.get(windowId)
+  }catch(e){
+    // Window has closed so no window exists for given ID
+    window = null
+  }
   let port = connectionMap.get(windowId)
   let message = JSON.stringify(new Message.Message(Message.MESSAGE_TYPE.REMOVE_TAB, null, tabId, window ))
   port.postMessage(message)
