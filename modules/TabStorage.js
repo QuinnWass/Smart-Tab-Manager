@@ -66,6 +66,7 @@ async function RemoveTab(TabNode){
         tabGraph.RemoveTabNode(TabNode)
         return RETURN_FLAGS.TAB_REMOVE
     }catch(e){
+        console.log(e)
         return RETURN_FLAGS.RET_ERROR
     }
     

@@ -91,7 +91,13 @@ class TabGraph {
     Post: Tab deleted from this._tabs and ths._topLevelTabs
     */
     RemoveTabNode(tabId){
+        if(!tabId){
+            return
+        }
         let tabNode = this._tabs.get(tabId)
+        if(!tabNode){
+            return
+        }
         if(!TabIdExists(tabNode)){
             throw "No id for TabNode"
         }
@@ -103,7 +109,7 @@ class TabGraph {
         if (index != -1){
             this._topLevelTabs.splice(index, REMOVE_ONE_ELEMENT)
         }
-        if (tabNode._parentId != null){
+        if (tabNode._parentId){
             this.RemoveParentTab(tabNode)
         }
     }
@@ -117,6 +123,7 @@ class TabGraph {
         let parentTabId = childTabNode._parentId
         let parentTab = this._tabs.get(parentTabId)
         if (parentTab ==  undefined){
+
             throw "Parent Tab does not exist"
         }
         let index = parentTab._children.indexOf(childTabNode.GetTabId())
