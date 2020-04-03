@@ -17,7 +17,7 @@ async function HandleFocusTabClick(event){
     let tab = await GetTabFromEvent(event)
     let window = await GetWindowFromEvent(event)
     browser.tabs.update(tab.id,{active:true})
-    browser.windows.update(window.windowId, {focused: true, drawAttention:true})
+    browser.windows.update(tab.windowId, {focused: true, drawAttention:true})
 }
 
 async function GetTabFromEvent(event){
