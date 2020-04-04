@@ -6,9 +6,7 @@ Documentation for NEW_TAB_LISTNER_FILTERS can be found at
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/onUpdated under extraParameters
 */
 
-const NEW_TAB_LISTENER_FILTERS = {
-    properties: ["title", "status"]
-}
+
 
 /*
 function registerTabListner(callback)
@@ -25,8 +23,8 @@ Documentation for onUpdated listener can be found at
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/onUpdated
 
 */
-function registerNewTabListener(callback){
-    browser.tabs.onUpdated.addListener(callback, NEW_TAB_LISTENER_FILTERS)
+function registerNewTabListener(callback, parameters){
+    browser.tabs.onUpdated.addListener(callback, parameters)
 }
 
 /*
@@ -44,4 +42,22 @@ function registerRemoveTabListener(callback){
     browser.tabs.onRemoved.addListener(callback)
 }
 
-export {registerNewTabListener, registerRemoveTabListener};
+
+/*
+function registerConnectionListner(callback)
+
+registerConnectionListner will register a listener to detect when a connection is established
+to the background. 
+
+callback must have the parameter (Port).
+
+Documentation for onConnect listener can be found at
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connect
+
+*/
+function registerConnectionListner(callback){
+    browser.runtime.onConnect.addListener(callback);
+}
+
+
+export {registerNewTabListener, registerRemoveTabListener, registerConnectionListner};
