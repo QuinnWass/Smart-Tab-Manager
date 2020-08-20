@@ -6,6 +6,8 @@
 
 Smart Tab Manager is a lightweight firefox extension that nests your tabs in a tree like structure and optimizes navigation between them.
 
+## -- Depricated Due to Firefox Browser Security Constraints --
+
 ## Installation
 This extension must be loaded using [web-ext](https://github.com/mozilla/web-ext) or adding the package in [about:debugging](about:debugging) in firefox. 
 
